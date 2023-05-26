@@ -46,11 +46,11 @@ instance.interceptors.response.use(function (response) {
     //     }
     // }
 
-    if (error.config && error.response && +error.response.status === 400 && error.config.url === '/api/auth/refresh-token') {
-        window.location.href = '/login';
-    }
+    // if (error?.config && error?.response && +error?.response?.status === 400 && error.config.url === '/api/auth/refresh-token') {
+    //     window.location.href = '/login';
+    // }
 
-    if (error.response.status === 403) return null;
+    if (error?.response?.status === 403) return null;
 
     return error?.response?.data ?? Promise.reject(error);
 });
