@@ -6,6 +6,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npm install && npm run build-server",
+    "build-server": "echo 'Building server...' && npm run compile-server",
+    "compile-server": "echo 'Compiling server...'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.mjs"
   },
