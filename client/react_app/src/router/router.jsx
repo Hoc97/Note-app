@@ -50,7 +50,7 @@ export default createBrowserRouter([
                 ]
             },
             {
-                path: "login",
+                path: "/login",
                 element: <Login />,
             }
         ]
