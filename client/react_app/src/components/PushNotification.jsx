@@ -38,7 +38,6 @@ const PushNotification = () => {
         (async () => {
             const onNext = (data) => {
                 /* handle incoming values */
-                console.log({ data });
                 setInvisible(false);
                 const message = data?.data?.notification?.message;
                 setNotification(message);

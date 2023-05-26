@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Grid, List, Typography } from '@mui/material';
 import { Link, Outlet, useLoaderData, useNavigate, useParams } from 'react-router-dom';
-import { useLayoutEffect, useState } from 'react';
+import { memo, useLayoutEffect, useState } from 'react';
 import AddNote from './AddNote';
 import moment from 'moment';
 
@@ -8,9 +8,8 @@ const NoteList = () => {
     const nav = useNavigate();
     const { noteId, folderId } = useParams();
     const { folder } = useLoaderData() || {};
-    // console.log('NoteList', folder);
-    console.log({ noteId });
     const [activeNoteId, setActiveNoteId] = useState(noteId || folder?.notes?.[0]?.id);
+
     useLayoutEffect(() => {
         if (noteId) setActiveNoteId(noteId);
     }, [noteId]);
@@ -43,26 +42,24 @@ const NoteList = () => {
                             <AddNote folderId={folderId} />
                         </Box>
                     }
-                >
-
-                    {folder?.notes?.map(({ id, content, updatedAt }) => {
-                        return (
-                            <Link
-                                key={id}
-                                to={`note/${id}`}
-                                style={{ textDecoration: 'none', margin: '5px 0 5px 0', display: 'block' }}
-                            >
-                                <Card style={{ backgroundColor: id === activeNoteId ? 'rgb(255,211,140)' : '' }}>
-                                    <CardContent sx={{ '&:last-child': { pb: '10px', padding: '10px' } }}>
-                                        <div style={{ fontSize: 14, fontWeight: 'bold' }}
-                                            dangerouslySetInnerHTML={{ __html: `${content.substring(0, 30) || 'Empty'}` }}
-                                        />
-                                        <Typography sx={{ fontSize: '10px' }}>{moment(updatedAt).format('MMMM Do YYYY, h:mm:ss a')}</Typography>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        );
-                    })}
+                >{folder?.notes?.map(({ id, content, updatedAt }) => {
+                    return (
+                        <Link
+                            key={id}
+                            to={`note/${id}`}
+                            style={{ textDecoration: 'none', margin: '5px 0 5px 0', display: 'block' }}
+                        >
+                            <Card style={{ backgroundColor: id === activeNoteId ? 'rgb(255,211,140)' : '' }}>
+                                <CardContent sx={{ '&:last-child': { pb: '10px', padding: '10px' } }}>
+                                    <div style={{ fontSize: 14, fontWeight: 'bold' }}
+                                        dangerouslySetInnerHTML={{ __html: `${content.substring(0, 30) || 'Empty'}` }}
+                                    />
+                                    <Typography sx={{ fontSize: '10px' }}>{moment(updatedAt).format('MMMM Do YYYY, h:mm:ss a')}</Typography>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    );
+                })}
                 </List>
 
             </Grid>
@@ -71,4 +68,4 @@ const NoteList = () => {
     );
 };
 
-export default NoteList;
+export default memo(NoteList);

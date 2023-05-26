@@ -27,8 +27,7 @@ const AddFolder = () => {
     };
 
     const handleAddNewFolder = async () => {
-        const { addFolder } = await addNewFolderFunc({ name: newFolderName });
-        console.log({ addFolder });
+        await addNewFolderFunc({ name: newFolderName });
         handleClose();
     };
 

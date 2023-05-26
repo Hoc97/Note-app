@@ -17,7 +17,7 @@ const getNote = (query, noteId) => {
 };
 
 const addNewFolder = (query, name) => {
-    return axios.post('/graphql', { query, variables: { name } });
+    return axios.post('/graphql', { query, variables: { name, content: `Folder ${name} created'` } });
 };
 
 const addNewNote = (query, formDataObj) => {

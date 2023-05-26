@@ -7,7 +7,6 @@ import PushNotification from '../components/PushNotification';
 const Home = () => {
     const { folders } = useLoaderData() || {};
 
-
     return (
         <>
             <Typography variant='h4' sx={{ mb: '20px' }}  >Note app</Typography>

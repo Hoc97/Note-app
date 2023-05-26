@@ -12,17 +12,13 @@ const Login = () => {
     const handleLoginWithGoogle = async () => {
         const provider = new GoogleAuthProvider();
         const { user: { uid, displayName } } = await signInWithPopup(auth, provider);
-        console.log('res', uid, displayName);
         const query = `mutation register($uid: String!, $name: String!) {
                 register(uid: $uid, name: $name) {
                   uid
                   name
                 }
               }`;
-
-        const { register } = await postLogin(query, uid, displayName);
-        console.log({ register });
-
+        await postLogin(query, uid, displayName);
     };
     useEffect(() => {
         if (user.uid) {

@@ -47,14 +47,17 @@ const noteLoader = async ({ params: { noteId } }) => {
 
 
 const addNewFolderFunc = async (newFolder) => {
-  const query = `mutation AddFolder($name: String!) {
-        addFolder( name: $name) {
-          name
-          author {
-            name
-          }
-        }
-      }`;
+  const query = `mutation AddFolder($name: String!,$content: String) {
+    addFolder( name: $name) {
+      name
+      author {
+        name
+      }
+    }
+    pushNotification(content: $content) {
+      message
+    }
+  }`;
 
   const res = await addNewFolder(query, newFolder.name);
   console.log(res);

@@ -6,7 +6,6 @@ import AddFolder from './AddFolder';
 const FolderList = ({ folders }) => {
     const nav = useNavigate();
     const { folderId } = useParams();
-    console.log({ folderId });
     const [activeFolderId, setActiveFoderId] = useState(folderId || folders?.[0]?.id);
     useLayoutEffect(() => {
         if (folderId) setActiveFoderId(folderId);

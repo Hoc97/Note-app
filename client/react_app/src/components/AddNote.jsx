@@ -25,14 +25,11 @@ const AddNote = ({ folderId }) => {
     const handleNewNoteName = (e) => {
         setNewNoteName(e.target.value);
     };
-    console.log({ newNoteName });
     const handleAddNewNote = async () => {
         submit(
             {
                 content: newNoteName, folderId
             }, { method: 'post', action: `/folders/${folderId}` });
-        // const { addNote } = await addNewNoteFunc({ content: newNoteName, folderId });
-        // console.log({ addNote });
         handleClose();
     };
 
